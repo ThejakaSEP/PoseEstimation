@@ -17,7 +17,11 @@ while True:
 
     if results.pose_landmarks:
         mpDraw.draw_landmarks(img,results.pose_landmarks,mpPose.POSE_CONNECTIONS)
-
+        for id,lm in enumerate(results.pose_landmarks.landmark):
+            height,width,channel = img.shape
+            print(id,lm)
+            cx, cy = int(lm.x*width),int(lm.y*height) #To get the pixel value from the ration decimals shown otherwise
+            cv2.circle(img,(cx,cy),5,(255,0,0),cv2.FILLED)
     currentTime = time.time()
     fps = 1/(currentTime-previousTime)
     previousTime = currentTime
