@@ -42,14 +42,13 @@ class poseDetector():
                 lmList.append([id,cx,cy])
                 if draw:
                     cv2.circle(img,(cx,cy),5,(255,0,0),cv2.FILLED)
-        return list
+        return lmList
 
 def main():
     cap = cv2.VideoCapture('PoseVideos/Video1.mp4')
     previousTime = 0
 
     detector = poseDetector()
-
 
     while True:
         success, img = cap.read()
