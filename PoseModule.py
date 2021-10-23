@@ -45,7 +45,7 @@ class poseDetector():
         return lmList
 
 def main():
-    cap = cv2.VideoCapture('PoseVideos/Video1.mp4')
+    cap = cv2.VideoCapture('PoseVideos/Video3.mp4')
     previousTime = 0
 
     detector = poseDetector()
@@ -54,7 +54,9 @@ def main():
         success, img = cap.read()
         img = detector.findPose(img)
         lmList = detector.getPosition(img)
-        print(lmList)
+        if 11 < len(lmList):
+            print(lmList[11])
+            cv2.circle(img, (lmList[14][1], lmList[14][2]), 15, (0, 0, 255), cv2.FILLED)
 
         currentTime = time.time()
         fps = 1 / (currentTime - previousTime)
